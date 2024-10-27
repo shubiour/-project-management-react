@@ -1,0 +1,24 @@
+services:
+   project-management:
+    image: node:20-alpine
+    container_name:  project-management
+    hostname:  project-management
+    restart: unless-stopped
+    tty: true
+    working_dir: /usr/local/app
+    volumes:
+      - /mnt/Gallery/developments/React Projects/React course/-project-management-react:/usr/local/app
+    command: >
+      sh -c '
+        npm i &&
+        npm run dev
+      '
+    ports:
+      - "5173:5173"
+    networks:
+      -  project-management
+
+networks:
+   project-management:
+    driver: bridge
+    name:  project-management
